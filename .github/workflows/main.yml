@@ -1,0 +1,33 @@
+name: terramform
+
+on:
+ push:
+  branches: [main]
+
+jobs:
+ deploy:
+  runs-on: ubuntu-latest
+  steps:
+   - name: Checkout
+     uses: actions/checkout@v4.2.1
+   - name: INSTALAR TERRAFORM EN LA MÁQUINA VIRTUAL
+     uses: 
+
+   - name: CONFIGURAR CREDENCIALES AWS
+     uses: 
+     with:
+      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+	    aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+      aws-region: "us-east-1" # Cambia a la región de AWS que estás usando
+
+   - name: INICIALIZAR TERRAFORM
+        run: 
+       
+
+      - name: Plan Terraform
+        run: 
+
+      - name: Apply Terraform
+        run:
+   
