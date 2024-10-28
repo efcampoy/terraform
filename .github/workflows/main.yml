@@ -36,3 +36,4 @@ jobs:
      with:
       name: terraform tfstate
       path: ${{ env.tf_actions_working_dir }}/terraform.tfstate
+      path: ${{ env.tf_actions_working_dir }}/terraform.tfstate
