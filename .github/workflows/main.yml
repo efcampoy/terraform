@@ -8,7 +8,7 @@ jobs:
  deploy:
   runs-on: ubuntu-latest
   env:
-      TF_WORKING_DIR: ./terraform
+      tf_actions_working_dir: ./terraform 
   steps:
    - name: Checkout
      uses: actions/checkout@v4.2.1
@@ -26,15 +26,15 @@ jobs:
      uses: hashicorp/setup-terraform@v3
    - name: Initialize Terraform
      run: terraform init
-     working-directory: ${{ env.TF_WORKING_DIR }}
+     working-directory: ${{ env.tf_actions_working_dir }}
    - name: Terraform plan
      run: terraform plan -no-color
-     working-directory: ${{ env.TF_WORKING_DIR }}
+     working-directory: ${{ env.tf_actions_working_dir }}
    - name: Terraform apply
      run: terraform destroy -auto-approve
-     working-directory: ${{ env.TF_WORKING_DIR }}
+     working-directory: ${{ env.tf_actions_working_dir }}
    - name: Upload Terraform State
      uses: actions/upload-artifact@v4
      with:
       name: terraform tfstate
-      path: ${{ env.TF_WORKING_DIR }}/terraform.tfstate
+      path: ${{ env.tf_actions_working_dir }}/terraform.tfstate
