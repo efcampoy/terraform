@@ -18,7 +18,8 @@ jobs:
       aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
       aws-region: "us-east-1" # Cambia a la región de AWS que estás usando
    - name: Create SSH Key File
-     run: echo "${{ secrets.NGINX_SERVER_KEY }}" > 
+     run: echo "${{ secrets.NGINX_SERVER_KEY }}" > ./nginx-server.key.pub
+     shell: bash
    - name: Set up Terraform
      uses: hashicorp/setup-terraform@v3
    - name: Initialize Terraform
