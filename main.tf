@@ -164,7 +164,7 @@ resource "aws_network_interface" "nginx-interface" {
   }
 }
 
-#crear una llave publica
+#crear una llave publica a ver si funciona
 resource "aws_key_pair" "nginx-server-key" {
   key_name   = "nginx-server-key"
   public_key = file("nginx-server.key.pub")
