@@ -10,24 +10,27 @@ jobs:
   steps:
    - name: Checkout
      uses: actions/checkout@v4.2.1
-   - name: INSTALAR TERRAFORM EN LA MÁQUINA VIRTUAL
-     uses: 
-
    - name: CONFIGURAR CREDENCIALES AWS
-     uses: 
+     uses: aws-actions/configure-aws-credentials@v4
      with:
       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-	    aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+      aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
       aws-region: "us-east-1" # Cambia a la región de AWS que estás usando
 
-   - name: INICIALIZAR TERRAFORM
-        run: 
-       
-
-      - name: Plan Terraform
-        run: 
-
-      - name: Apply Terraform
-        run:
-   
+   - name: Set up Terraform
+     uses: hashicorp/setup-terraform@v3
+   - name: Initialize Terraform
+     run: terraform init
+     working-directory: ${{ env.tf_actions_working_dir }}
+   - name: Terraform plan
+     run: terraform plan -no-color
+     working-directory: ${{ env.tf_actions_working_dir }}
+   - name: Terraform apply
+     run: terraform apply -auto-approve
+     working-directory: ${{ env.tf_actions_working_dir }}
+   - name: Upload Terraform State
+     uses: badgerhobbs/terraform-state@v2
+     with:
+      name: terraform tfstate
+      path: ${{ env.tf_actions_working_dir }}/terraform.tfstate
