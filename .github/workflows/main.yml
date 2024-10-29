@@ -26,7 +26,7 @@ jobs:
    - name: Verificar Archivos Después de Apply
      run: |
         echo "Listado de archivos después de terraform apply:"
-        ls -la /home/runner/work/terraform/terraform
+        ls -la /home/runner/work/terraform/
    - name: Set up Terraform
      uses: hashicorp/setup-terraform@v3
    - name: Initialize Terraform
