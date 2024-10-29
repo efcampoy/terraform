@@ -8,8 +8,9 @@ jobs:
  deploy:
   runs-on: ubuntu-latest
   steps:
-   - name: Verificar contenido del directorio raíz
-     run: ls -la
+   - name: Imprimir la variable tf_actions_working_dir
+     run: echo "tf_actions_working_dir=${{ env.tf_actions_working_dir }}"
+
    - name: Checkout
      uses: actions/checkout@v4.2.1
    - name: CONFIGURAR CREDENCIALES AWS
