@@ -29,18 +29,22 @@ jobs:
    - name: Initialize Terraform
      run: terraform init
      working-directory: ${{ env.tf_actions_working_dir }}
+   - name: Verificar Archivos Después de Apply 2222222222222
+     run: |
+        echo "Listado de archivos después de terraform apply:"
+        ls -la /home/runner/work/terraform/
    - name: Terraform plan
      run: terraform plan -no-color
      working-directory: ${{ env.tf_actions_working_dir }}
    - name: Terraform apply
-     run: terraform destroy -auto-approve
+     run: terraform apply -auto-approve
      working-directory: ${{ env.tf_actions_working_dir }}
    - name: Upload Terraform State
      uses: actions/upload-artifact@v4
      with:
       name: terraform tfstate
       path: /home/runner/work/terraform/terraform/terraform.tfstate
-   - name: Verificar Archivos Después de Apply
+   - name: Verificar Archivos Después de Apply 3
      run: |
         echo "Listado de archivos después de terraform apply:"
         ls -la /home/runner/work/terraform/
