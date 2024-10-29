@@ -31,7 +31,7 @@ jobs:
    - name: Verificar Archivos Después de Apply
      run: |
         echo "Listado de archivos después de terraform apply:"
-        ls -la ./terraform
+        ls -la /home/runner/work/terraform/terraform
    - name: Terraform plan
      run: terraform plan -no-color
      working-directory: ${{ env.tf_actions_working_dir }}
