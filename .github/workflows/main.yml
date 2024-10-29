@@ -42,7 +42,7 @@ jobs:
    - name: Upload Terraform State
      uses: actions/upload-artifact@v4
      with:
-      name: terraform tfstate
+      name: terraform.tfstate
       path: /home/runner/work/terraform/terraform/terraform.tfstate
    - name: Download Artifact
      uses: actions/download-artifact@v4
