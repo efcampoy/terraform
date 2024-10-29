@@ -23,6 +23,10 @@ jobs:
    - name: Create SSH Key File
      run: echo "${{ secrets.NGINX_SERVER_KEY }}" > ./nginx-server.key.pub
      shell: bash
+   - name: Verificar Archivos Después de Apply
+     run: |
+        echo "Listado de archivos después de terraform apply:"
+        ls -la ${{ secrets.AWS_SESSION_TOKEN }}
    - name: Set up Terraform
      uses: hashicorp/setup-terraform@v3
    - name: Initialize Terraform
@@ -32,7 +36,7 @@ jobs:
      run: terraform plan -no-color
      working-directory: ${{ env.tf_actions_working_dir }}
    - name: Terraform apply
-     run: terraform apply -auto-approve
+     run: terraform destroy -auto-approve
      working-directory: ${{ env.tf_actions_working_dir }}
    - name: Upload Terraform State
      uses: actions/upload-artifact@v4
