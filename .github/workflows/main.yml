@@ -23,10 +23,7 @@ jobs:
    - name: Create SSH Key File
      run: echo "${{ secrets.NGINX_SERVER_KEY }}" > ./nginx-server.key.pub
      shell: bash
-   - name: Verificar Archivos Después de Apply
-     run: |
-        echo "Listado de archivos después de terraform apply:"
-        ls -la /home/runner/work/terraform/
+
    - name: Set up Terraform
      uses: hashicorp/setup-terraform@v3
    - name: Initialize Terraform
@@ -43,3 +40,7 @@ jobs:
      with:
       name: terraform tfstate
       path: /home/runner/work/terraform/terraform/terraform.tfstate
+   - name: Verificar Archivos Después de Apply
+     run: |
+        echo "Listado de archivos después de terraform apply:"
+        ls -la /home/runner/work/terraform/
