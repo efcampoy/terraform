@@ -8,6 +8,8 @@ jobs:
  deploy:
   runs-on: ubuntu-latest
   steps:
+   - name: Verificar contenido del directorio raíz
+     run: ls -la
    - name: Checkout
      uses: actions/checkout@v4.2.1
    - name: CONFIGURAR CREDENCIALES AWS
@@ -17,10 +19,6 @@ jobs:
       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
       aws-region: "us-east-1" # Cambia a la región de AWS que estás usando
-   - name: Verificar contenido del directorio raíz
-     run: ls -la
-
-
    - name: Create SSH Key File
      run: echo "${{ secrets.NGINX_SERVER_KEY }}" > ./nginx-server.key.pub
      shell: bash
@@ -28,15 +26,15 @@ jobs:
      uses: hashicorp/setup-terraform@v3
    - name: Initialize Terraform
      run: terraform init
-     working-directory: ./terraform
+     working-directory: terraform
    - name: Terraform plan
      run: terraform plan -no-color
-     working-directory: ./terraform
+     working-directory: terraform
    - name: Terraform apply
      run: terraform destroy -auto-approve
-     working-directory: ./terraform
+     working-directory: terraform
    - name: Upload Terraform State
      uses: actions/upload-artifact@v4
      with:
       name: terraform tfstate
-      path: ./terraform/terraform.tfstate
+      path: terraform/terraform.tfstate
