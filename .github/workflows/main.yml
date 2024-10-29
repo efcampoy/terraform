@@ -42,4 +42,4 @@ jobs:
      uses: actions/upload-artifact@v4
      with:
       name: terraform tfstate
-      path: ./terraform/terraform.tfstate
+      path: /home/runner/work/terraform/terraform/terraform.tfstate
